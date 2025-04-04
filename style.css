@@ -12,12 +12,27 @@ body{
 #calculator{
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
+    border: 2px solid black;
 }
 #display{    
     text-align: right;
     border: none;
     margin: 0;
-    padding: 1rem;
+    padding: 0.5rem;
     font-size: 3rem;
+}
+#keyboard{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .3rem;
+    padding: .3rem;
+    background-color: gray;
+}
+button{
+    aspect-ratio: 1;
+    cursor: pointer;
+    border-radius: .5rem;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
