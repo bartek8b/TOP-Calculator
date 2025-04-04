@@ -9,11 +9,11 @@ body{
     -webkit-tap-highlight-color: transparent;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     min-width: 100vw;
     min-height: 100vh;
-    background: radial-gradient(hsl(0, 0%, 83%), hsl(0, 0%, 83%), gray);
+    background: radial-gradient(hsl(0, 0%, 83%), gray);
 }
 #calculator{
     display: flex;
@@ -21,6 +21,7 @@ body{
     border: 15px solid gray;
     border-radius:  1rem;
     min-width: 24rem;
+    margin-top: 2rem;
 }
 #display{    
     text-align: right;
@@ -39,7 +40,7 @@ body{
     gap: .7rem;
     padding: .7rem;
     background-color: gray;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
 }
 button{
     font-family: Helvetica, sans-serif;
@@ -72,6 +73,4 @@ a{
     text-decoration: none;
     align-self: flex-end;
     padding-right: 10px;
-    position: absolute;
-    bottom: 0;
 }
