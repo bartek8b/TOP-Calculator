@@ -1,38 +1,77 @@
+@font-face {
+    font-family: 'PixelForce';
+    src: url(fonts/PixelForce.ttf);
+}
 body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-width: 100vw;
     min-height: 100vh;
+    background: radial-gradient(hsl(0, 0%, 83%), hsl(0, 0%, 83%), gray);
 }
 #calculator{
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
+    border: 15px solid gray;
+    border-radius:  1rem;
+    min-width: 24rem;
 }
 #display{    
     text-align: right;
-    border: none;
+    border: 2px solid hsl(0, 0%, 83%);
+    border-radius: .5rem;
     margin: 0;
-    padding: 0.5rem;
-    font-size: 3rem;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+    font-size: 3.5rem;
+    font-family: 'PixelForce', monospace;
+    background-color: hsl(120, 10%, 60%);
 }
 #keyboard{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: .3rem;
-    padding: .3rem;
+    gap: .7rem;
+    padding: .7rem;
     background-color: gray;
+    padding-top: 1rem;
 }
 button{
+    font-family: Helvetica, sans-serif;
     aspect-ratio: 1;
     cursor: pointer;
     border-radius: .5rem;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
+    background-color: hsl(0, 0%, 83%);
+    transform: scale(100%);
+    transition: scale .5s linear;
+}
+button:hover{
+    opacity: 75%;
+}
+button:active{
+    transform: scale(95%);
+}
+.clearBtn{
+    background-color:hsl(45, 100%, 60%);
+}
+.operationBtn{
+    background-color: hsl(195, 20%, 65%);
+}
+a{
+    font-family: 'PixelForce', monospace;
+    color: hsla(0, 0%, 0%, 0.7);
+    font-size: .9rem;
+    text-decoration: none;
+    align-self: flex-end;
+    padding-right: 10px;
+    position: absolute;
+    bottom: 0;
 }
