@@ -9,12 +9,20 @@ const calculator = {
         num1: null,
         operator: null,
         num2: null,
-    },
+        result: 0,
+    },    
 
-    display: 0,
-
-    calculate: function(){
-        
+    operate: function(a, b){
+        switch (this.memory.operator){
+            case '+':
+                return a + b;
+            case '-':
+                return a - b;
+            case '*':
+                return a * b;
+            case '/':
+                return a / b;
+        }
     }
 
 }
