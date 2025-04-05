@@ -19,12 +19,19 @@ const calculator = {
 
 appendBtns.forEach(btn => btn.addEventListener('click', () => {
 
-    if(display.innerHTML === '0' && btn.innerHTML !== '.'){
-        display.innerHTML = btn.innerHTML;
-    }
-    else{
-        display.innerHTML += btn.innerHTML;
-    }
+    if((!(display.innerHTML.includes('.')) && (display.innerHTML.length < 10))
+        || (display.innerHTML.includes('.')) && (display.innerHTML.length <= 10)){
+
+        if(display.innerHTML === '0' && btn.innerHTML !== '.'){
+            display.innerHTML = btn.innerHTML;
+        }
+        else{
+            if(!(btn.innerHTML === '.' && display.innerHTML.includes('.'))){
+                display.innerHTML += btn.innerHTML;
+            }       
+        }
+
+    }   
     
 }))
 
