@@ -30,7 +30,7 @@ body{
     margin: 0;
     padding-block: 1rem;
     padding-inline: 1rem;
-    font-size: 3rem;
+    font-size: 2.9rem;
     font-family: 'PixelForce', monospace;
     background-color: hsl(120, 10%, 60%);
 }
@@ -48,7 +48,7 @@ button{
     cursor: pointer;
     border-radius: .5rem;
     border: none;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     background-color: hsl(0, 0%, 83%);
     transform: scale(100%);

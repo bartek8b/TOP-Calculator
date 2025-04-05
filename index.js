@@ -1,5 +1,6 @@
 const display = document.querySelector('#display');
 const appendBtns = document.querySelectorAll('.appendBtn');
+const signBtn = document.querySelector('.signBtn')
 
 const calculator = {
 
@@ -31,7 +32,11 @@ appendBtns.forEach(btn => btn.addEventListener('click', () => {
             }       
         }
 
-    }   
+    }
     
 }))
+
+signBtn.addEventListener('click', () => {
+    (!display.textContent.includes('-')) ? display.textContent = `-${display.textContent}` : display.textContent = display.textContent.slice(1);    
+})
 
