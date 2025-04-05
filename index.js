@@ -1,3 +1,6 @@
+const display = document.querySelector('#display');
+const appendBtns = document.querySelectorAll('.appendBtn');
+
 const calculator = {
 
     memory: {
@@ -8,22 +11,13 @@ const calculator = {
 
     display: 0,
 
-    calculate: function(operator){
-        switch(operator){
-            case "+":
-                return this.memory.num1 + this.memory.num2;
-                break
-            case "-":
-                return this.memory.num1 - this.memory.num2;
-                break
-            case "*":
-                return this.memory.num1 * this.memory.num2;
-                break
-            case ":":
-                return this.memory.num1 / this.memory.num2;
-                break;            
-        }
+    calculate: function(){
+        
     }
 
 }
+
+appendBtns.forEach(btn => btn.addEventListener('click', () => 
+    display.innerHTML === "0" ? display.innerHTML = btn.innerHTML : display.innerHTML += btn.innerHTML)
+)
 
