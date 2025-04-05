@@ -27,6 +27,8 @@ const calculator = {
 
 }
 
+display.textContent = calculator.memory.result;
+
 appendBtns.forEach(btn => btn.addEventListener('click', () => {
 
     if((!(display.textContent.includes('.')) && (display.textContent.length < 10)) || (display.textContent.includes('.')) && (display.textContent.length <= 10)){
