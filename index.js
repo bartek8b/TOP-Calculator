@@ -17,7 +17,14 @@ const calculator = {
 
 }
 
-appendBtns.forEach(btn => btn.addEventListener('click', () => 
-    display.innerHTML === "0" ? display.innerHTML = btn.innerHTML : display.innerHTML += btn.innerHTML)
-)
+appendBtns.forEach(btn => btn.addEventListener('click', () => {
+
+    if(display.innerHTML === '0' && btn.innerHTML !== '.'){
+        display.innerHTML = btn.innerHTML;
+    }
+    else{
+        display.innerHTML += btn.innerHTML;
+    }
+    
+}))
 
