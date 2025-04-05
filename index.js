@@ -1,6 +1,7 @@
 const display = document.querySelector('#display');
 const appendBtns = document.querySelectorAll('.appendBtn');
-const signBtn = document.querySelector('.signBtn')
+const signBtn = document.querySelector('.signBtn');
+const clearBtns = document.querySelectorAll('.clearBtn');
 
 const calculator = {
 
@@ -20,15 +21,14 @@ const calculator = {
 
 appendBtns.forEach(btn => btn.addEventListener('click', () => {
 
-    if((!(display.innerHTML.includes('.')) && (display.innerHTML.length < 10))
-        || (display.innerHTML.includes('.')) && (display.innerHTML.length <= 10)){
+    if((!(display.textContent.includes('.')) && (display.textContent.length < 10)) || (display.textContent.includes('.')) && (display.textContent.length <= 10)){
 
-        if(display.innerHTML === '0' && btn.innerHTML !== '.'){
-            display.innerHTML = btn.innerHTML;
+        if(display.textContent === '0' && btn.textContent !== '.'){
+            display.textContent = btn.textContent;
         }
         else{
-            if(!(btn.innerHTML === '.' && display.innerHTML.includes('.'))){
-                display.innerHTML += btn.innerHTML;
+            if(!(btn.textContent === '.' && display.textContent.includes('.'))){
+                display.textContent += btn.textContent;
             }       
         }
 
@@ -37,6 +37,11 @@ appendBtns.forEach(btn => btn.addEventListener('click', () => {
 }))
 
 signBtn.addEventListener('click', () => {
-    (!display.textContent.includes('-')) ? display.textContent = `-${display.textContent}` : display.textContent = display.textContent.slice(1);    
+    
+    if(display.textContent !== '0'){
+        (!display.textContent.includes('-')) ? display.textContent = `-${display.textContent}` : display.textContent = display.textContent.slice(1); 
+    } 
+       
+
 })
 
