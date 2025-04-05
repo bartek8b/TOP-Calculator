@@ -18,10 +18,10 @@ body{
 #calculator{
     display: flex;
     flex-direction: column;
-    border: 15px solid gray;
+    border: 15px solid hsl(0, 0%, 25%);;
     border-radius:  1rem;
     min-width: 24rem;
-    margin-top: 2rem;
+    margin-block: 2rem;
 }
 #display{    
     text-align: right;
@@ -39,7 +39,7 @@ body{
     grid-template-columns: repeat(4, 1fr);
     gap: .7rem;
     padding: .7rem;
-    background-color: gray;
+    background-color: hsl(0, 0%, 25%);
     padding-top: 1.5rem;
 }
 button{
@@ -53,6 +53,9 @@ button{
     background-color: hsl(0, 0%, 83%);
     transform: scale(100%);
     transition: scale .5s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 button:hover{
     opacity: 75%;
