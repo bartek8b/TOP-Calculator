@@ -27,7 +27,7 @@ const calculator = {
                 this.memory.result = a / b;
                 break;
         }
-        display.textContent = calculator.memory.result;
+        display.textContent = this.memory.result;
     }
 
 }
@@ -63,10 +63,9 @@ signBtn.addEventListener('click', () => {
 operationBtns.forEach(btn => btn.addEventListener('click', () => {
 
     if(!calculator.memory.num1){
-        calculator.memory.num1 = parseFloat(display.textContent);
-        // console.log(calculator.memory.num1);
+        calculator.memory.num1 = Number(display.textContent);        
     }
-    
+
     if(calculator.memory.num1 && calculator.memory.num2){
         calculator.memory.result = calculator.operate(calculator.memory.num1, calculator.memory.num2);
         calculator.memory.num1 = calculator.memory.result;
