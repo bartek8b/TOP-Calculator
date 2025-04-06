@@ -13,7 +13,7 @@ const calculator = {
     },    
 
     operate: function(a, b){
-        if(num1 && operator && num2){
+        if(this.memory.num1 && this.memory.operator && this.memory.num2){
             switch (this.memory.operator){
                 case '+':
                     this.memory.result = a + b;
@@ -29,8 +29,7 @@ const calculator = {
                     break;
             }
             display.textContent = this.memory.result;
-            this.memory.num1 = this.memory.result;
-            this.memory.num2 = null;
+            this.memory.num1 = this.memory.result;            
         }        
     }
 
@@ -72,18 +71,23 @@ signBtn.addEventListener('click', () => {
 
 operationBtns.forEach(btn => btn.addEventListener('click', () => {
 
-    calculator.operate(calculator.memory.num1, calculator.memory.num2)
-
     if(!calculator.memory.num1){
         calculator.memory.num1 = Number(display.textContent);        
     }
 
     else if(calculator.memory.num1){
-        calculator.memory.num2 = Number(display.textContent);
-        //gdzies tu dopisac display textcont. = '0'
-    }   
+        calculator.memory.num2 = Number(display.textContent);    
+    }    
+
+    calculator.operate(calculator.memory.num1, calculator.memory.num2);
+    calculator.memory.num2 = null;
+    display.textContent = 0;
+
+    calculator.memory.operator = btn.textContent;
+
+    // console.log(calculator.memory.num1);
+    // console.log(calculator.memory.num2);
+    // console.log(calculator.memory.operator);
+    // console.log(calculator.memory.result);
     
 }));
-
-
-
