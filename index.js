@@ -13,21 +13,25 @@ const calculator = {
     },    
 
     operate: function(a, b){
-        switch (this.memory.operator){
-            case '+':
-                this.memory.result = a + b;
-                break;
-            case '-':
-                this.memory.result = a - b;
-                break;
-            case '*':
-                this.memory.result = a * b;
-                break;
-            case '/':
-                this.memory.result = a / b;
-                break;
-        }
-        display.textContent = this.memory.result;
+        if(num1 && operator && num2){
+            switch (this.memory.operator){
+                case '+':
+                    this.memory.result = a + b;
+                    break;
+                case '-':
+                    this.memory.result = a - b;
+                    break;
+                case '*':
+                    this.memory.result = a * b;
+                    break;
+                case '/':
+                    this.memory.result = a / b;
+                    break;
+            }
+            display.textContent = this.memory.result;
+            this.memory.num1 = this.memory.result;
+            this.memory.num2 = null;
+        }        
     }
 
 }
@@ -68,14 +72,16 @@ signBtn.addEventListener('click', () => {
 
 operationBtns.forEach(btn => btn.addEventListener('click', () => {
 
+    calculator.operate(calculator.memory.num1, calculator.memory.num2)
+
     if(!calculator.memory.num1){
         calculator.memory.num1 = Number(display.textContent);        
     }
 
-    if(calculator.memory.num1 && calculator.memory.num2){
-        calculator.memory.result = calculator.operate(calculator.memory.num1, calculator.memory.num2);
-        calculator.memory.num1 = calculator.memory.result;
-    }
+    else if(calculator.memory.num1){
+        calculator.memory.num2 = Number(display.textContent);
+        //gdzies tu dopisac display textcont. = '0'
+    }   
     
 }));
 
