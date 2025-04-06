@@ -7,10 +7,10 @@ const calculator = {
 
     memory: {
         num1: null,
-        operator: null,
-        operatorOn: false,
+        operator: null,        
         num2: null,
         result: 0,
+        resetDisplay: false,
     },    
 
     operate: function(a, b){
@@ -29,13 +29,15 @@ const calculator = {
                     this.memory.result = a / b;
                     break;
             }
+            
             display.textContent = parseFloat(this.memory.result.toPrecision(10));
             this.memory.num1 = this.memory.result;
             this.memory.num2 = null;
+            }            
         }        
     }
 
-}
+
 
 display.textContent = calculator.memory.result;
 
@@ -48,16 +50,18 @@ appendBtns.forEach(btn => btn.addEventListener('click', () => {
     )
     
     {
-
-        if((display.textContent === '0' && btn.textContent !== '.') || (calculator.memory.operatorOn)){
+        //SPRAWDZIC TEN KOD
+        if((display.textContent === '0' && btn.textContent !== '.') || (calculator.memory.resetDisplay)){
             display.textContent = btn.textContent;
-            calculator.memory.operatorOn = false;
+            calculator.memory.resetDisplay = false;
         }
         else{
             if(!(btn.textContent === '.' && display.textContent.includes('.'))){
                 display.textContent += btn.textContent;
             }       
         }
+
+
 
     }
     
@@ -67,8 +71,7 @@ signBtn.addEventListener('click', () => {
     
     if(display.textContent !== '0'){
         (!display.textContent.includes('-')) ? display.textContent = `-${display.textContent}` : display.textContent = display.textContent.slice(1); 
-    } 
-       
+    }      
 
 });
 
@@ -81,11 +84,10 @@ operationBtns.forEach(btn => btn.addEventListener('click', () => {
     else if(calculator.memory.num1){
         calculator.memory.num2 = Number(display.textContent);
         calculator.operate(calculator.memory.num1, calculator.memory.num2);
-        display.textContent = calculator.memory.result;
     }
 
     calculator.memory.operator = btn.textContent;
-    calculator.memory.operatorOn = true;
+    calculator.memory.resetDisplay = true;   
 
     // console.log(calculator.memory.num1);
     // console.log(calculator.memory.num2);
