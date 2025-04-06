@@ -8,6 +8,7 @@ const calculator = {
     memory: {
         num1: null,
         operator: null,
+        operatorOn: false,
         num2: null,
         result: 0,
     },    
@@ -29,7 +30,8 @@ const calculator = {
                     break;
             }
             display.textContent = this.memory.result;
-            this.memory.num1 = this.memory.result;            
+            this.memory.num1 = this.memory.result;
+            this.memory.num2 = null;
         }        
     }
 
@@ -38,7 +40,7 @@ const calculator = {
 display.textContent = calculator.memory.result;
 
 appendBtns.forEach(btn => btn.addEventListener('click', () => {
-
+    
     if((!display.textContent.includes('.') && !display.textContent.includes('-') && display.textContent.length < 10)
         || (display.textContent.includes('.') && !display.textContent.includes('-') && display.textContent.length < 11)
         || (!display.textContent.includes('.') && display.textContent.includes('-') && display.textContent.length < 11)
@@ -47,8 +49,9 @@ appendBtns.forEach(btn => btn.addEventListener('click', () => {
     
     {
 
-        if(display.textContent === '0' && btn.textContent !== '.'){
+        if((display.textContent === '0' && btn.textContent !== '.') || (calculator.memory.operatorOn)){
             display.textContent = btn.textContent;
+            calculator.memory.operatorOn = false;
         }
         else{
             if(!(btn.textContent === '.' && display.textContent.includes('.'))){
@@ -76,14 +79,13 @@ operationBtns.forEach(btn => btn.addEventListener('click', () => {
     }
 
     else if(calculator.memory.num1){
-        calculator.memory.num2 = Number(display.textContent);    
-    }    
-
-    calculator.operate(calculator.memory.num1, calculator.memory.num2);
-    calculator.memory.num2 = null;
-    display.textContent = 0;
+        calculator.memory.num2 = Number(display.textContent);
+        calculator.operate(calculator.memory.num1, calculator.memory.num2);
+        display.textContent = calculator.memory.result;
+    }
 
     calculator.memory.operator = btn.textContent;
+    calculator.memory.operatorOn = true;
 
     // console.log(calculator.memory.num1);
     // console.log(calculator.memory.num2);
