@@ -29,7 +29,7 @@ const calculator = {
                     this.memory.result = a / b;
                     break;
             }
-            display.textContent = this.memory.result;
+            display.textContent = parseFloat(this.memory.result.toPrecision(10));
             this.memory.num1 = this.memory.result;
             this.memory.num2 = null;
         }        
