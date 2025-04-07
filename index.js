@@ -48,23 +48,25 @@ const calculator = {
     }        
 }
 
-
-
 display.textContent = calculator.memory.result;
 
 appendBtns.forEach(btn => btn.addEventListener('click', () => {
+
+    if(calculator.memory.resetDisplay){
+        (btn.textContent === '.') ? display.textContent = '0.' : display.textContent = btn.textContent;        
+        calculator.memory.resetDisplay = false;
+    }
     
-    if((!display.textContent.includes('.') && !display.textContent.includes('-') && display.textContent.length < 10)
+    else{
+        if((!display.textContent.includes('.') && !display.textContent.includes('-') && display.textContent.length < 10)
         || (display.textContent.includes('.') && !display.textContent.includes('-') && display.textContent.length < 11)
         || (!display.textContent.includes('.') && display.textContent.includes('-') && display.textContent.length < 11)
         || (display.textContent.includes('.') && display.textContent.includes('-') && display.textContent.length < 12)
-    )
+        )
     
     {
-        //SPRAWDZIC TEN KOD
-        if((display.textContent === '0' && btn.textContent !== '.') || (calculator.memory.resetDisplay)){
+        if(display.textContent === '0' && btn.textContent !== '.'){
             display.textContent = btn.textContent;
-            calculator.memory.resetDisplay = false;
         }
         else{
             if(!(btn.textContent === '.' && display.textContent.includes('.'))){
@@ -74,13 +76,13 @@ appendBtns.forEach(btn => btn.addEventListener('click', () => {
 
 
 
-    }
+    }}
     
 }));
 
 signBtn.addEventListener('click', () => {
     
-    if(display.textContent !== '0'){
+    if(display.textContent !== '0' && calculator.memory.resetDisplay === false){
         (!display.textContent.includes('-')) ? display.textContent = `-${display.textContent}` : display.textContent = display.textContent.slice(1); 
     }      
 
