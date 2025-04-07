@@ -29,13 +29,24 @@ const calculator = {
                     this.memory.result = a / b;
                     break;
             }
-            
-            display.textContent = parseFloat(this.memory.result.toPrecision(10));
-            this.memory.num1 = this.memory.result;
-            this.memory.num2 = null;
+
+            if(!(this.memory.result < -9999999999 || this.memory.result > 9999999999)){
+                display.textContent = this.memory.result;
+                this.memory.num1 = this.memory.result;
+                this.memory.num2 = null;
             }            
-        }        
-    }
+            else{
+                display.textContent = 'ERROR'; 
+                this.memory.num1 = null;
+                this.memory.operator = null;
+                this.memory.num2 = null; 
+                this.memory.result = 0;
+                this.memory.resetDisplay = true;
+            }
+            
+        }            
+    }        
+}
 
 
 
