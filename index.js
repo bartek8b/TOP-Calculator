@@ -31,9 +31,13 @@ const calculator = {
             }
 
             if(!(this.memory.result < -9999999999 || this.memory.result > 9999999999)){
-                display.textContent = this.memory.result;
+                // display.textContent = this.memory.result;
                 this.memory.num1 = this.memory.result;
                 this.memory.num2 = null;
+
+                if(Math.abs(this.memory.result).toString().replace('.', '').length <= 10){
+                    display.textContent = this.memory.result;
+                }
             }            
             else{
                 display.textContent = 'ERROR'; 
