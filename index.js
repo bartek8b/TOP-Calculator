@@ -11,7 +11,14 @@ const calculator = {
         num2: null,
         result: 0,
         resetDisplay: false,
-    },    
+    },
+    
+    resetAll: function(){
+        this.memory.num1 = null;
+        this.memory.operator = null;
+        this.memory.num2 = null; 
+        this.memory.result = 0;
+    },
 
     operate: function(a, b){
         if(this.memory.num1 && this.memory.operator && this.memory.num2){
@@ -37,22 +44,25 @@ const calculator = {
                     let fix = (10 - (stringResult.indexOf('.') - isNegative));
                     
                     this.memory.result = Number(this.memory.result.toFixed(fix));
+                    display.textContent = this.memory.result;
+
+                    if(stringResult.includes('e')){
+                        display.textContent = 'ERROR PREC'; 
+                        this.resetAll();
+                    }
                 }
 
-                display.textContent = this.memory.result;
                 this.memory.num1 = this.memory.result;
                 this.memory.num2 = null;
 
             }            
             else{
-                display.textContent = 'ERROR'; 
-                this.memory.num1 = null;
-                this.memory.operator = null;
-                this.memory.num2 = null; 
-                this.memory.result = 0;
+                display.textContent = 'ERROR OVF'; 
+                this.resetAll();
             }
             
-        }            
+        } 
+                   
     }        
 }
 
@@ -106,6 +116,8 @@ operationBtns.forEach(btn => btn.addEventListener('click', () => {
         calculator.memory.num2 = Number(display.textContent);
         calculator.operate(calculator.memory.num1, calculator.memory.num2);
     }
+
+    //TU BEDZIE KOD KTORY SPRAWI ZE PO = WYNIK ZMIENI SIE NA RESULT OP 
 
     calculator.memory.operator = btn.textContent;
     calculator.memory.resetDisplay = true;   
