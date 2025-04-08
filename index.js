@@ -38,6 +38,9 @@ const calculator = {
                 if(Math.abs(this.memory.result).toString().replace('.', '').length <= 10){
                     display.textContent = this.memory.result;
                 }
+                else{
+                    //TU BEDZIE KOD KTORY ZROBI LICZBE MAX 10 CYFR :)
+                }
             }            
             else{
                 display.textContent = 'ERROR'; 
