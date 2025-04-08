@@ -23,7 +23,7 @@ const calculator = {
     },
 
     operate: function(a, b){
-        if(this.memory.num1 && this.memory.operator && this.memory.num2){
+        if(this.memory.num1 !== null && this.memory.operator !==null && this.memory.num2 !== null){
             switch (this.memory.operator){
                 case '+':
                     this.memory.result = a + b;
