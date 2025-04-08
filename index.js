@@ -18,6 +18,7 @@ const calculator = {
         this.memory.operator = null;
         this.memory.num2 = null; 
         this.memory.result = 0;
+        this.memory.resetDisplay = true;
     },
 
     operate: function(a, b){
