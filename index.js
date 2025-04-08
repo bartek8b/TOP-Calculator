@@ -39,13 +39,15 @@ const calculator = {
             }
 
             if(!(this.memory.result < -9999999999 || this.memory.result > 9999999999)){
-                if(!Math.abs(this.memory.result).toString().replace('.', '').length <= 10){
+                if(Math.abs(this.memory.result).toString().replace('.', '').length > 10){
                     let stringResult = this.memory.result.toString();
                     let isNegative = stringResult.includes('-') ? 1 : 0;
                     let fix = (10 - (stringResult.indexOf('.') - isNegative));
                     
                     this.memory.result = Number(this.memory.result.toFixed(fix));
                     display.textContent = this.memory.result;
+                    this.memory.num1 = this.memory.result;
+                    this.memory.num2 = null;
 
                     if(stringResult.includes('e')){
                         display.textContent = 'ERROR PREC'; 
@@ -53,17 +55,18 @@ const calculator = {
                     }
                 }
 
-                this.memory.num1 = this.memory.result;
-                this.memory.num2 = null;
+                else{
+                    display.textContent = this.memory.result;
+                    this.memory.num1 = this.memory.result;
+                    this.memory.num2 = null;
+                }                
 
             }            
             else{
                 display.textContent = 'ERROR OVF'; 
                 this.resetAll();
-            }
-            
-        } 
-                   
+            }            
+        }                    
     }        
 }
 
@@ -92,11 +95,8 @@ appendBtns.forEach(btn => btn.addEventListener('click', () => {
                 display.textContent += btn.textContent;
             }       
         }
-
-
-
     }}
-    
+        
 }));
 
 signBtn.addEventListener('click', () => {

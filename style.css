@@ -66,7 +66,7 @@ button:active{
 .clearBtn{
     background-color:hsl(45, 100%, 60%);
 }
-.operationBtn, .sqrtBtn{
+.operationBtn{
     background-color: hsl(195, 20%, 65%);
 }
 a{
