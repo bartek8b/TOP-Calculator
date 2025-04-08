@@ -2,6 +2,7 @@ const display = document.querySelector('#display');
 const appendBtns = document.querySelectorAll('.appendBtn');
 const signBtn = document.querySelector('.signBtn');
 const operationBtns = document.querySelectorAll('.operationBtn');
+const sqrtBtn = document.querySelector('.sqrtBtn');
 
 const calculator = {
 
@@ -96,7 +97,7 @@ appendBtns.forEach(btn => btn.addEventListener('click', () => {
             }       
         }
     }}
-        
+
 }));
 
 signBtn.addEventListener('click', () => {
@@ -129,3 +130,20 @@ operationBtns.forEach(btn => btn.addEventListener('click', () => {
     // console.log(calculator.memory.result);
     
 }));
+
+sqrtBtn.addEventListener('click', () => {
+
+    let sqrt = Math.sqrt(Number(display.textContent));
+
+    if(Math.abs(sqrt).toString().replace('.', '').length > 10){
+        let stringResult = sqrt.toString();
+        let isNegative = stringResult.includes('-') ? 1 : 0;
+        let fix = (10 - (stringResult.indexOf('.') - isNegative));
+        
+        display.textContent = Number(sqrt.toFixed(fix));
+    }
+
+    else{
+        display.textContent = sqrt;
+    }
+})
