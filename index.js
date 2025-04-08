@@ -31,16 +31,18 @@ const calculator = {
             }
 
             if(!(this.memory.result < -9999999999 || this.memory.result > 9999999999)){
-                // display.textContent = this.memory.result;
+                if(!Math.abs(this.memory.result).toString().replace('.', '').length <= 10){
+                    let stringResult = this.memory.result.toString();
+                    let isNegative = stringResult.includes('-') ? 1 : 0;
+                    let fix = (10 - (stringResult.indexOf('.') - isNegative));
+                    
+                    this.memory.result = Number(this.memory.result.toFixed(fix));
+                }
+
+                display.textContent = this.memory.result;
                 this.memory.num1 = this.memory.result;
                 this.memory.num2 = null;
 
-                if(Math.abs(this.memory.result).toString().replace('.', '').length <= 10){
-                    display.textContent = this.memory.result;
-                }
-                else{
-                    //TU BEDZIE KOD KTORY ZROBI LICZBE MAX 10 CYFR :)
-                }
             }            
             else{
                 display.textContent = 'ERROR'; 
@@ -48,7 +50,6 @@ const calculator = {
                 this.memory.operator = null;
                 this.memory.num2 = null; 
                 this.memory.result = 0;
-                this.memory.resetDisplay = true;
             }
             
         }            
