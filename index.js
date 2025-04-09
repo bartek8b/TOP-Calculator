@@ -38,6 +38,11 @@ const calculator = {
                     break;
                 case '/':
                     this.memory.result = a / b;
+                    if(b === 0){
+                        display.textContent = 'ERROR DIV'; 
+                        this.resetAll();
+                        return;
+                    }
                     break;
             }
 
@@ -112,60 +117,61 @@ signBtn.addEventListener('click', () => {
 
 operationBtns.forEach(btn => btn.addEventListener('click', () => {
 
-    if(btn.textContent !== '='){
-        if(calculator.memory.tempNum){
-            calculator.memory.tempNum = null;
-        }
-        else{
-            if(!calculator.memory.num1){
-                calculator.memory.num1 = Number(display.textContent);        
+    if(!display.textContent.includes('ERROR')){
+        if(btn.textContent !== '='){
+            if(calculator.memory.tempNum){
+                calculator.memory.tempNum = null;
             }
-    
             else{
-                calculator.memory.num2 = Number(display.textContent);
-                calculator.operate(calculator.memory.num1, calculator.memory.num2);
-            }
-        }
-        calculator.memory.operator = btn.textContent;
-    }
-    
-    else if (btn.textContent === '=' && calculator.memory.operator !== null){
-        if(!calculator.memory.tempNum){
-            calculator.memory.tempNum = Number(display.textContent);
-        }        
-        calculator.operate(calculator.memory.num1, calculator.memory.tempNum);
-    }
+                if(!calculator.memory.num1){
+                    calculator.memory.num1 = Number(display.textContent);        
+                }
         
-    calculator.memory.resetDisplay = true; 
-      
+                else{
+                    calculator.memory.num2 = Number(display.textContent);
+                    calculator.operate(calculator.memory.num1, calculator.memory.num2);
+                }
+            }
+            calculator.memory.operator = btn.textContent;
+        }
+        
+        else if (btn.textContent === '=' && calculator.memory.operator !== null){
+            if(!calculator.memory.tempNum){
+                calculator.memory.tempNum = Number(display.textContent);
+            }        
+            calculator.operate(calculator.memory.num1, calculator.memory.tempNum);
+        }
+            
+        calculator.memory.resetDisplay = true;
+    } 
 }));
 
 sqrtBtn.addEventListener('click', () => {
 
-    if(Number(display.textContent) >= 0){
+    if(!display.textContent.includes('ERROR')){
+        if(Number(display.textContent) >= 0){
 
-    let sqrt = Math.sqrt(Number(display.textContent));
-
-        if(Math.abs(sqrt).toString().replace('.', '').length > 10){
-            let stringResult = sqrt.toString();
-            let isNegative = stringResult.includes('-') ? 1 : 0;
-            let fix = (10 - (stringResult.indexOf('.') - isNegative));
+            let sqrt = Math.sqrt(Number(display.textContent));
         
-            display.textContent = Number(sqrt.toFixed(fix));
-        }
-        else{
-            display.textContent = sqrt;
-        }
-
-        if(calculator.memory.tempNum){
-            calculator.memory.tempNum = null
-        }
-    }
-
-    else{
-        display.textContent = 'ERROR SQRT'; 
-        calculator.resetAll();
-    }
-
-    
+                if(Math.abs(sqrt).toString().replace('.', '').length > 10){
+                    let stringResult = sqrt.toString();
+                    let isNegative = stringResult.includes('-') ? 1 : 0;
+                    let fix = (10 - (stringResult.indexOf('.') - isNegative));
+                
+                    display.textContent = Number(sqrt.toFixed(fix));
+                }
+                else{
+                    display.textContent = sqrt;
+                }
+        
+                if(calculator.memory.tempNum){
+                    calculator.memory.tempNum = null
+                }
+            }
+        
+            else{
+                display.textContent = 'ERROR SQRT'; 
+                calculator.resetAll();
+            }
+    }     
 })
