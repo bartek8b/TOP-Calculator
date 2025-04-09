@@ -133,17 +133,27 @@ operationBtns.forEach(btn => btn.addEventListener('click', () => {
 
 sqrtBtn.addEventListener('click', () => {
 
+    if(Number(display.textContent) >= 0){
+
     let sqrt = Math.sqrt(Number(display.textContent));
 
-    if(Math.abs(sqrt).toString().replace('.', '').length > 10){
-        let stringResult = sqrt.toString();
-        let isNegative = stringResult.includes('-') ? 1 : 0;
-        let fix = (10 - (stringResult.indexOf('.') - isNegative));
+        if(Math.abs(sqrt).toString().replace('.', '').length > 10){
+            let stringResult = sqrt.toString();
+            let isNegative = stringResult.includes('-') ? 1 : 0;
+            let fix = (10 - (stringResult.indexOf('.') - isNegative));
         
-        display.textContent = Number(sqrt.toFixed(fix));
+            display.textContent = Number(sqrt.toFixed(fix));
+        }
+        else{
+            display.textContent = sqrt;
+        }
+
     }
 
     else{
-        display.textContent = sqrt;
+        display.textContent = 'ERROR SQRT'; 
+        calculator.resetAll();
     }
+
+    
 })
