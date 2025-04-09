@@ -19,6 +19,14 @@ body{
     min-height: 100vh;
     background: radial-gradient(hsl(0, 0%, 83%), gray);
 }
+#header{
+    font-family: 'PixelForce', monospace;
+    font-size: 1.1rem;
+    text-align: center;
+}
+#header > span{
+    font-size: 1.5rem;
+}
 #calculator{
     display: flex;
     flex-direction: column;
