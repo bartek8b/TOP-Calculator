@@ -129,7 +129,7 @@ operationBtns.forEach(btn => btn.addEventListener('click', () => {
         calculator.memory.operator = btn.textContent;
     }
     
-    else if(btn.textContent === '='){
+    else{
         if(!calculator.memory.tempNum){
             calculator.memory.tempNum = Number(display.textContent);
         }    
@@ -157,6 +157,10 @@ sqrtBtn.addEventListener('click', () => {
             display.textContent = sqrt;
         }
 
+        if(calculator.memory.tempNum){
+            calculator.memory.tempNum = null
+        }
+        
     }
 
     else{
