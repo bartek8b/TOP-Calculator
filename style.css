@@ -25,19 +25,19 @@ body{
 }
 #header{
     font-family: 'PixelForce', monospace;
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-align: center;
     margin-top: 5px;
 }
 #header > span{
     font-size: 1.5rem;
 }
-#brand{
+#adv{
     background-color: hsl(0, 0%, 25%);
     padding-bottom: .8rem;
     color: gray;
     font-family: 'brand', monospace;
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: left;
 }
 #calculator{
