@@ -12,6 +12,7 @@ const calculator = {
         num2: null,
         result: 0,
         resetDisplay: false,
+        tempNum: null,
     },
     
     resetAll: function(){
@@ -20,10 +21,11 @@ const calculator = {
         this.memory.num2 = null; 
         this.memory.result = 0;
         this.memory.resetDisplay = true;
+        this.memory.tempNum = null;
     },
 
     operate: function(a, b){
-        if(this.memory.num1 !== null && this.memory.operator !==null && this.memory.num2 !== null){
+        if(this.memory.num1 !== null && this.memory.operator !==null){
             switch (this.memory.operator){
                 case '+':
                     this.memory.result = a + b;
@@ -110,25 +112,32 @@ signBtn.addEventListener('click', () => {
 
 operationBtns.forEach(btn => btn.addEventListener('click', () => {
 
-    if(!calculator.memory.num1){
-        calculator.memory.num1 = Number(display.textContent);        
-    }
-
-    else if(calculator.memory.num1){
-        calculator.memory.num2 = Number(display.textContent);
-        calculator.operate(calculator.memory.num1, calculator.memory.num2);
-    }
-
-    //TU BEDZIE KOD KTORY SPRAWI ZE PO = WYNIK ZMIENI SIE NA RESULT OP 
-
-    calculator.memory.operator = btn.textContent;
-    calculator.memory.resetDisplay = true;   
-
-    // console.log(calculator.memory.num1);
-    // console.log(calculator.memory.num2);
-    // console.log(calculator.memory.operator);
-    // console.log(calculator.memory.result);
+    if(btn.textContent !== '='){
+        if(calculator.memory.tempNum){
+            calculator.memory.tempNum = null;
+        }
+        else{
+            if(!calculator.memory.num1){
+                calculator.memory.num1 = Number(display.textContent);        
+            }
     
+            else{
+                calculator.memory.num2 = Number(display.textContent);
+                calculator.operate(calculator.memory.num1, calculator.memory.num2);
+            }
+        }
+        calculator.memory.operator = btn.textContent;
+    }
+    
+    else if(btn.textContent === '='){
+        if(!calculator.memory.tempNum){
+            calculator.memory.tempNum = Number(display.textContent);
+        }    
+        calculator.operate(calculator.memory.num1, calculator.memory.tempNum);
+    }
+        
+    calculator.memory.resetDisplay = true; 
+      
 }));
 
 sqrtBtn.addEventListener('click', () => {
