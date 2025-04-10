@@ -22,10 +22,13 @@ body{
     min-width: 100vw;
     min-height: 100vh;
     background: radial-gradient(hsl(0, 0%, 83%), gray);
+    cursor: default;
+}*::selection{
+    background-color: transparent;
 }
 #header{
     font-family: 'PixelForce', monospace;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     text-align: center;
     margin-top: 5px;
 }
