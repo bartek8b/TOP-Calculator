@@ -7,6 +7,9 @@ Try to make operation and use equals several times etc.
 
 # Errors explanation
 ERROR DIV -Can't divide by 0
+
 ERROR PREC - The result is too long (scientific notation)
+
 ERROR OVF - Overflow - the result is too big or too small <[999,999,999]
+
 ERROR SQRT - Can't take the square root of a negative number
