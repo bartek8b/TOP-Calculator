@@ -182,7 +182,7 @@ sqrtBtn.addEventListener('click', () => {
 });
 
 clearBtns.forEach(btn => btn.addEventListener('click', () => {
-    if(display.textContent.includes('ERROR') || btn.textContent === 'C'){
+    if(display.textContent.includes('ERROR') || btn.textContent === 'C' || calculator.memory.resetDisplay){
         calculator.resetAll();
         display.textContent = 0;
     }
