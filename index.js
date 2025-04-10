@@ -172,12 +172,12 @@ sqrtBtn.addEventListener('click', () => {
                 if(calculator.memory.tempNum){
                     calculator.memory.tempNum = null
                 }
-            }
+        }
         
-            else{
+        else{
                 display.textContent = 'ERROR SQRT'; 
                 calculator.resetAll();
-            }
+        }
     }     
 });
 
@@ -187,10 +187,17 @@ clearBtns.forEach(btn => btn.addEventListener('click', () => {
         display.textContent = 0;
     }
 
-    else if((btn.textContent !== 'C') && (display.textContent !== '0')){
-        display.textContent = display.textContent.slice(0, -1);
-    }
-
-
-
-}));
+    else if(btn.textContent !== 'C' && display.textContent !== '0'){
+        
+        if(display.textContent.toString().includes('-') === true && display.textContent.toString().length === 2){
+            display.textContent = display.textContent.slice(-1);
+        }
+        else if(display.textContent.toString().length === 1) {
+                display.textContent = 0;
+        }
+        else{
+            display.textContent = display.textContent.slice(0, -1);
+        }        
+    }        
+}
+));
