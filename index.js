@@ -3,6 +3,7 @@ const appendBtns = document.querySelectorAll('.appendBtn');
 const signBtn = document.querySelector('.signBtn');
 const operationBtns = document.querySelectorAll('.operationBtn');
 const sqrtBtn = document.querySelector('.sqrtBtn');
+const clearBtns = document.querySelectorAll('.clearBtn');
 
 const calculator = {
 
@@ -178,4 +179,18 @@ sqrtBtn.addEventListener('click', () => {
                 calculator.resetAll();
             }
     }     
-})
+});
+
+clearBtns.forEach(btn => btn.addEventListener('click', () => {
+    if(display.textContent.includes('ERROR') || btn.textContent === 'C'){
+        calculator.resetAll();
+        display.textContent = 0;
+    }
+
+    else if((btn.textContent !== 'C') && (display.textContent !== '0')){
+        display.textContent = display.textContent.slice(0, -1);
+    }
+
+
+
+}));
