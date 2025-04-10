@@ -82,6 +82,10 @@ display.textContent = calculator.memory.result;
 
 appendBtns.forEach(btn => btn.addEventListener('click', () => {
 
+    if(calculator.memory.tempNum){
+        calculator.resetAll();
+    }
+
     if(calculator.memory.resetDisplay){
         (btn.textContent === '.') ? display.textContent = '0.' : display.textContent = btn.textContent;        
         calculator.memory.resetDisplay = false;
