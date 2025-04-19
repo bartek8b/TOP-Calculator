@@ -47,7 +47,14 @@ const calculator = {
                     break;
             }
 
-            if(!(this.memory.result < -9999999999 || this.memory.result > 9999999999)){
+            
+            if (this.memory.result.toString().includes('e')) {
+                display.textContent = 'ERROR PREC'; 
+                this.resetAll();
+                return;
+            }
+
+            if(!(Math.abs(this.memory.result) > 9999999999)){
                 if(Math.abs(this.memory.result).toString().replace('.', '').length > 10){
                     let stringResult = this.memory.result.toString();
                     let isNegative = stringResult.includes('-') ? 1 : 0;
@@ -57,11 +64,6 @@ const calculator = {
                     display.textContent = this.memory.result;
                     this.memory.num1 = this.memory.result;
                     this.memory.num2 = null;
-
-                    if(stringResult.includes('e')){
-                        display.textContent = 'ERROR PREC'; 
-                        this.resetAll();
-                    }
                 }
 
                 else{
