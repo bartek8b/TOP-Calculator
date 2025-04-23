@@ -122,15 +122,24 @@ signBtn.addEventListener('click', () => {
 
 });
 
+// Below is fixed with AI help - preciously operator other than '=' gave bug: disp.content /op./ disp. content.
+// Captions in Polish
 operationBtns.forEach(btn => btn.addEventListener('click', () => {
     if (!display.textContent.includes('ERROR')) {
         if (btn.textContent !== '=') {
-            // AI: Update operator without recalculating if num1 exists and resetDisplay is true
+            // Jeśli po "=" użytkownik wprowadza operator, traktujemy wynik jako num1
+            if (calculator.memory.resetDisplay && calculator.memory.tempNum !== null) {
+                calculator.memory.num1 = calculator.memory.result; // Ustaw wynik jako num1
+                calculator.memory.num2 = null; // Wyzeruj num2, aby wprowadzić nową liczbę
+                calculator.memory.tempNum = null; // Resetuj tempNum
+            }
+
+            // Jeśli resetDisplay jest włączony, zmieniamy operator bez obliczeń
             if (calculator.memory.num1 !== null && calculator.memory.resetDisplay) {
                 calculator.memory.operator = btn.textContent;
             } else {
                 if (calculator.memory.tempNum) {
-                    calculator.memory.tempNum = null; 
+                    calculator.memory.tempNum = null; // Reset temporary number
                 } else {
                     if (!calculator.memory.num1) {
                         calculator.memory.num1 = Number(display.textContent);
@@ -139,16 +148,23 @@ operationBtns.forEach(btn => btn.addEventListener('click', () => {
                         calculator.operate(calculator.memory.num1, calculator.memory.num2);
                     }
                 }
-                calculator.memory.operator = btn.textContent;
+                calculator.memory.operator = btn.textContent; // Ustaw operator
             }
         } else if (btn.textContent === '=' && calculator.memory.operator !== null) {
-            if (!calculator.memory.tempNum) {
+            if (calculator.memory.tempNum === null) {
+                // Pierwsze naciśnięcie "=" - zapisujemy num2 jako tempNum
                 calculator.memory.tempNum = Number(display.textContent);
+                calculator.operate(calculator.memory.num1, calculator.memory.tempNum);
+            } else {
+                // Kolejne naciśnięcia "=" - używamy tempNum do powtarzania operacji
+                calculator.operate(calculator.memory.num1, calculator.memory.tempNum);
             }
-            calculator.operate(calculator.memory.num1, calculator.memory.tempNum);
+
+            // Przypisujemy wynik do num1, aby kontynuować operacje
+            calculator.memory.num1 = calculator.memory.result;
         }
 
-        calculator.memory.resetDisplay = true;
+        calculator.memory.resetDisplay = true; // Flaga do resetu wyświetlacza
     }
 }));
 
