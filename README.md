@@ -1,5 +1,5 @@
 # odin-calculator
-I wanted my calculator to behave like the real old school digital calculator with 10 digits display. I've tried different sequences of operations on the physical calculator and then try to implement its behavior im my program.
+I purposely put limitations on myself while working on this project so that I could feel that there were hardware limitations. I wanted my calculator to behave like a real old digital calculator with a 10-digit display. I tried different sequences of operations on a physical calculator and then tried to implement its behavior in my program.
 
 Try to make operation and use equals several times etc.
 
