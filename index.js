@@ -123,34 +123,33 @@ signBtn.addEventListener('click', () => {
 });
 
 operationBtns.forEach(btn => btn.addEventListener('click', () => {
-
-    if(!display.textContent.includes('ERROR')){
-        if(btn.textContent !== '='){
-            if(calculator.memory.tempNum){
-                calculator.memory.tempNum = null;
-            }
-            else{
-                if(!calculator.memory.num1){
-                    calculator.memory.num1 = Number(display.textContent);        
+    if (!display.textContent.includes('ERROR')) {
+        if (btn.textContent !== '=') {
+            // AI: Update operator without recalculating if num1 exists and resetDisplay is true
+            if (calculator.memory.num1 !== null && calculator.memory.resetDisplay) {
+                calculator.memory.operator = btn.textContent;
+            } else {
+                if (calculator.memory.tempNum) {
+                    calculator.memory.tempNum = null; 
+                } else {
+                    if (!calculator.memory.num1) {
+                        calculator.memory.num1 = Number(display.textContent);
+                    } else {
+                        calculator.memory.num2 = Number(display.textContent);
+                        calculator.operate(calculator.memory.num1, calculator.memory.num2);
+                    }
                 }
-        
-                else{
-                    calculator.memory.num2 = Number(display.textContent);
-                    calculator.operate(calculator.memory.num1, calculator.memory.num2);
-                }
+                calculator.memory.operator = btn.textContent;
             }
-            calculator.memory.operator = btn.textContent;
-        }
-        
-        else if (btn.textContent === '=' && calculator.memory.operator !== null){
-            if(!calculator.memory.tempNum){
+        } else if (btn.textContent === '=' && calculator.memory.operator !== null) {
+            if (!calculator.memory.tempNum) {
                 calculator.memory.tempNum = Number(display.textContent);
-            }        
+            }
             calculator.operate(calculator.memory.num1, calculator.memory.tempNum);
         }
-            
+
         calculator.memory.resetDisplay = true;
-    } 
+    }
 }));
 
 sqrtBtn.addEventListener('click', () => {
