@@ -2,8 +2,6 @@
 
 [Project requirements](https://www.theodinproject.com/lessons/foundations-calculator)
 
-Try to make operation and use equals several times etc.
-
 ### Errors explanation
 ERROR DIV -Can't divide by 0
 
